@@ -1,25 +1,31 @@
 import React, { Component } from "react";
 
 export class NewsItem extends Component {
-
-
-
-
-
   render() {
-    let { title, des, urlToImage,newsUrl } = this.props;
+    let { title, des, urlToImage, newsUrl, author, date, source } = this.props;
     return (
       <div className="my-3">
-      
-        <div className="card" >
+        <div className="card">
           <img src={urlToImage} className="card-img-top" alt="..." />
+
           <div className="card-body">
-            <h5 className="card-title">{title+"..."}</h5>
-            <p className="card-text text-muted">{des+ "..."}</p>
-            <a href={newsUrl} className="btn btn-sm btn-primary">
-              Read More
-            </a>
+            <h5 className="card-title">
+              {title + "..."}
+              <span className="position-absolute top-0  translate-middle badge rounded-pill bg-danger" style={{ left: "75%", zIndex: 1 }} >
+                {source}
+                <span className="visually-hidden">unread messages</span>
+              </span>
+            </h5>
+            <p className="card-text text-muted">{des + "..."}</p>
+            <hr />
+            <small className="text-body-secondary">
+              By {!author ? "Unknown" : author}
+              {" " + "on " + new Date(date).toLocaleDateString()}
+            </small>
           </div>
+          <a href={newsUrl} className="btn btn-dark">
+            Read More
+          </a>
         </div>
       </div>
     );
